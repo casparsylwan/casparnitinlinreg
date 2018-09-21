@@ -22,10 +22,11 @@
 #'
 #' @examples
 linreg <- setRefClass("linreg",
-                      fields = list(dep = "matrix", indep = "matrix", betahat = "matrix",
+                      fields = list(dep = "numeric", indep = "matrix", betahat = "matrix",
                                     predicted = "matrix", residuals = "matrix",inv_sqr_dep = "matrix",
                                     deg_fre = "numeric", sigmasq="numeric", var_betas = "numeric",
-                                    t_values = "numeric",p_values = "numeric" , data = "formula" ),
+                                    t_values = "numeric",p_values = "numeric" ,data="data.frame",
+                                    formula=formula),
                       methods = list(
                         coef = function(){
                           "Method coef"
@@ -59,10 +60,13 @@ linreg <- setRefClass("linreg",
                           "plots the residuals"
                           df<-data.frame(predicted, residuals)
                         ggplot(data = df) + aes(x =predicted, y=residuals, group=2) + geom_point()+geom_abline(intercept = 0, slope = 0 ) },
-                        model = function(formula, data){
+                        initialize = function(formula, data){
                           "Formula for reggression"
                           indep<<-model.matrix(formula,data)
-                          #print(head(formula[1]))
+                          dep<<-data[,all.vars(formula)[1]]
+                        coef();pred();resid();dfre();sigma();vbetas();tvalue()
+
+
 
 
 
