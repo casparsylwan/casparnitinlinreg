@@ -25,7 +25,7 @@ linreg <- setRefClass("linreg",
                       fields = list(dep = "matrix", indep = "matrix", betahat = "matrix",
                                     predicted = "matrix", residuals = "matrix",inv_sqr_dep = "matrix",
                                     deg_fre = "numeric", sigmasq="numeric", var_betas = "numeric",
-                                    t_values = "numeric",p_values = "numeric" , data = "ANY" ),
+                                    t_values = "numeric",p_values = "numeric" , data = "formula" ),
                       methods = list(
                         coef = function(){
                           "Method coef"
@@ -59,16 +59,17 @@ linreg <- setRefClass("linreg",
                           "plots the residuals"
                           df<-data.frame(predicted, residuals)
                         ggplot(data = df) + aes(x =predicted, y=residuals, group=2) + geom_point()+geom_abline(intercept = 0, slope = 0 ) },
-                        model = function(y,x,...){
+                        model = function(formula, data){
                           "Formula for reggression"
+                          indep<<-model.matrix(formula,data)
+                          #print(head(formula[1]))
 
-                          if(is.vector(y)& dim(y)[2]==1){ y <- as.matrix(y)} # recognize the variable and puts it to the right type.
-                          if(is.matrix(x)){}
+
+
 
                         }
 
                       ) )
-
 
 
 
