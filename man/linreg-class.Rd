@@ -41,7 +41,7 @@ Title
 \describe{
 \item{\code{coef()}}{Method coef}
 
-\item{\code{initialize(formula, data)}}{Formula for reggression}
+\item{\code{initialize(form, data)}}{Formula for reggression}
 
 \item{\code{plot()}}{plots the residuals}
 

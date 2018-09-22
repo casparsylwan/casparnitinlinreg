@@ -26,7 +26,7 @@ linreg <- setRefClass("linreg",
                                     predicted = "matrix", residuals = "matrix",inv_sqr_dep = "matrix",
                                     deg_fre = "numeric", sigmasq="numeric", var_betas = "numeric",
                                     t_values = "numeric",p_values = "numeric" ,data="data.frame",
-                                    formula=formula),
+                                    formula="formula", dataname="character"),
                       methods = list(
                         coef = function(){
                           "Method coef"
@@ -60,10 +60,28 @@ linreg <- setRefClass("linreg",
                           "plots the residuals"
                           df<-data.frame(predicted, residuals)
                         ggplot(data = df) + aes(x =predicted, y=residuals, group=2) + geom_point()+geom_abline(intercept = 0, slope = 0 ) },
-                        initialize = function(formula, data){
+                        summary=function(){
+
+
+
+
+
+                        },
+                        print=function(){
+                                  form<-format(formula)
+                                  base::print(paste0("formula = ",form, ", data = ", dataname))
+                                                                           },
+                        initialize = function(form, data){
                           "Formula for reggression"
-                          indep<<-model.matrix(formula,data)
-                          dep<<-data[,all.vars(formula)[1]]
+
+                          dataname<<-deparse(substitute(data))
+                          indep<<-model.matrix(form,data)
+                          dep<<-data[,all.vars(form)[1]]
+
+
+
+                          formula<<-form
+
                         coef();pred();resid();dfre();sigma();vbetas();tvalue()
 
 
