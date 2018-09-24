@@ -20,7 +20,8 @@
 #' @export linreg
 #' @exportClass linreg
 #'
-#' @examples
+#' @import ggplot2
+#'
 linreg <- setRefClass("linreg",
                       fields = list(dep = "numeric", indep = "matrix", betahat = "numeric",
                                     predicted = "matrix", residuals = "matrix",inv_sqr_dep = "matrix",
