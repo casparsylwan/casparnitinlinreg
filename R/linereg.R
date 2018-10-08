@@ -63,7 +63,7 @@ linreg <- setRefClass("linreg",
                           t_values <<- as.numeric( betahat/ se_betas )
                         p_values <<- pt(t_values, deg_fre)},
                         plot  = function(){
-                          "plots the residuals"
+                          "plots the residuals versus fitted"
                           df<-data.frame(predicted, residuals)
                         ggplot(data = df) + aes(x =predicted, y=residuals, group=2) + geom_point()+geom_abline(intercept = 0, slope = 0 ) },
                         summary=function(){

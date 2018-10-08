@@ -43,7 +43,7 @@ Title
 
 \item{\code{initialize(form, data)}}{Formula for reggression}
 
-\item{\code{plot()}}{plots the residuals}
+\item{\code{plot()}}{plots the residuals versus fitted}
 
 \item{\code{pred()}}{Method for prediction}
 
